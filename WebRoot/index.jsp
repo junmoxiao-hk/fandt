@@ -18,9 +18,35 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	
   </head>
   
   <body>
-    This is my JSP page. <br>
+  
+  <form action="${pageContext.request.contextPath}/login.action" method="post" >
+  	<table border="1" width="30%" align="left">
+  		<tr>
+  			<td>用户名</td>
+  			<td><input type="text" name="username"/></td>
+  		</tr>
+  		<tr>
+  			<td>密码</td>
+  			<td><input type="password" name="password"/></td>
+  		</tr>
+  		<tr>
+  			<td>选择登陆身份</td>
+  			<td><input type="radio" name="shenfen" value="teacher"/>我是教员<input type="radio" name="shenfen" value="student"/>我是学员</td>
+  		</tr>
+  		<tr>
+  			<td><input type="submit" value="登录"/></td>
+  			
+  		</tr>
+  		<tr>
+  			<td> <a href="${pageContext.request.contextPath}/register_teacherform.action ">成为教员</a></td>
+  			<td> <a href="${pageContext.request.contextPath}/register_studentform.action ">成为学员</a></td>
+  		</tr>
+  	</table>
+  </form>
+  
   </body>
 </html>
