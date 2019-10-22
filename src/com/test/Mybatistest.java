@@ -20,7 +20,7 @@ public class Mybatistest {
 	
 	@Test
 	public void linkdatabase(){
-		SqlSessionFactory sqlfFactory=null;
+		/*SqlSessionFactory sqlfFactory=null;
 		String resouce="Mybatis-config.xml";
 		Reader reader;
 		try {
@@ -32,12 +32,12 @@ public class Mybatistest {
 		}
 		
 		SqlSession session=sqlfFactory.openSession();
-		/*Teacher teacher=session.selectOne("selectbyid",1);
+		Teacher teacher=session.selectOne("selectbyid",1);
 		System.out.println(teacher);
-		session.close();*/
+		session.close();
 		
 		TeacherDao mapper=session.getMapper(TeacherDao.class);
-		System.out.println(mapper.selectbyid(1));
+		System.out.println(mapper.selectbyid(1));*/
 		
 	}
 	

@@ -15,12 +15,15 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.pojo.Student;
 import com.pojo.Teacher;
-import com.serviceimpl.TeacherService;
+import com.serviceimpl.StudentServiceImpl;
+import com.serviceimpl.TeacherServiceImpl;
 
 @Controller
 public class Testcontroller {
 	@Autowired
-	TeacherService teacherservice;
+	TeacherServiceImpl teacherservice;
+	@Autowired
+	StudentServiceImpl studentservice;
 	
 	@RequestMapping("/register_teacherform")
 	public String register_teacherform(){
@@ -37,23 +40,18 @@ public class Testcontroller {
 	@RequestMapping("/register_teacher")
 	public String register_teacher(Teacher teacher){
 		System.out.println(teacher.toString());
-		
+		teacherservice.addteacher(teacher);
 		return "success";
 	}
 	
 	@RequestMapping("/register_student")
 	public String register_student(Student student){
 		System.out.println(student.toString());
-		
+		studentservice.addstudent(student);
 		return "success";
 	}
 	
-	@RequestMapping("/register_student")
-	public String register_student(){
-		
-		
-		return "success";
-	}
+	
 	@RequestMapping("/login")
 	public String  msg(HttpServletRequest request,HttpSession session,String username,String shenfen,String password){
 		System.out.println(username+shenfen+password);

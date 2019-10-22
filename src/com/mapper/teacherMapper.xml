@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" ?>  
+<!DOCTYPE mapper PUBLIC 
+		"-//mybatis.apache.org//DTD Mapper 3.0//EN"      
+ 		"http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
+ 		<mapper namespace="com.Dao.TeacherDao">
+ 			<select id="addteacher" parameterType="Teacher"  >
+ 				insert into teacher value (null,#{teacher_user_name},#{teacher_user_password},#{teacher_name},#{teacher_sex},#{teacher_telephone},#{teacher_atcity},#{teacher_region},#{teacher_street},#{teacher_card},#{teacher_card_image},#{teacher_descr},#{isorder},#{check_status})
+ 			</select>
+ 		
+ 		</mapper>

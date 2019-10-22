@@ -4,14 +4,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.serviceimpl.TeacherService;
+import com.serviceimpl.TeacherServiceImpl;
 
 public class ApplicationCon {
 	
 	public static void main(String[] args) {
-		ApplicationContext app=new ClassPathXmlApplicationContext("Application-config.xml");
+		/*ApplicationContext app=new ClassPathXmlApplicationContext("Application-config.xml");
 		TeacherService tea=(TeacherService) app.getBean("teacherservice");
-		System.out.println(tea.getteache(1));
+		System.out.println(tea.getteache(1));*/
 	}
 	
 		

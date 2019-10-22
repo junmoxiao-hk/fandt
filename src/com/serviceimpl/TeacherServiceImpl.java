@@ -7,12 +7,16 @@ import com.Dao.TeacherDao;
 import com.pojo.Teacher;
 
 @Service("teacherservice")
-public class TeacherService {
+public class TeacherServiceImpl implements com.service.TeacherService {
 	@Autowired
 	TeacherDao teacherDao;
-	
-	public Teacher getteache(int teacher_id){
-		return teacherDao.selectbyid(teacher_id);
+
+	@Override
+	public void addteacher(Teacher teacher) {
+		teacherDao.addteacher(teacher);
+		
 	}
+	
+	
 	
 }
