@@ -19,61 +19,68 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
+	
+	<script type="text/javascript" src="${pageContext.request.contextPath}/js/check.js">
 
+	</script>
+	
+	
   </head>
   
   <body>
-   <form action="${pageContext.request.contextPath}/register_teacher.action" method="post"  >
-   	<table border="1" width="50%" align="center">
+ 
+  <form action="${pageContext.request.contextPath}/register_teacher.action" method="post"   enctype="multipart/form-data"   onsubmit="return check()">
+  	  <span id="span_msg" ></span>
+  		<table border="1" width="50%" align="center">
    		<tr>
    			<td>账号</td>
-   			<td><input type="text" name="Teacher_user_name" /></td>
+   			<td><input id="usname" type="text" name="Teacher_user_name" /></td>
    		</tr>
    		<tr>
    			<td>密码</td>
-   			<td><input type="password" name="teacher_user_password"  /></td>
+   			<td><input id="pwd" type="password" name="teacher_user_password"  /></td>
    		</tr>
    		<tr>
    			<td>真实姓名</td>
-   			<td><input type="text" name="Teacher_name" /></td>
+   			<td><input id="name" type="text" name="Teacher_name" /></td>
    		</tr>
    		
    		<tr>
    			<td>性别</td>
    			<td>
-   			<input type="radio" name="teacher_sex" value="男" checked="checked" />男
-   			<input type="radio" name="teacher_sex" value="女" />女
+   			<input  type="radio" name="teacher_sex" value="男" checked="checked" />男
+   			<input  type="radio" name="teacher_sex" value="女" />女
    			</td>
    			
    		</tr>
    		<tr>
    			<td>联系电话</td>
-   			<td><input type="text" name="teacher_telephone" /></td>
+   			<td><input id="tel" type="text" name="teacher_telephone" /></td>
    		</tr>
    		<tr>
    			<td>所在市</td>
-   			<td><input type="text" name="teacher_atcity" value="东莞市" readonly="readonly" /></td>
+   			<td><input id="city" type="text" name="teacher_atcity" value="东莞市" readonly="readonly" /></td>
    		</tr>
    		<tr>
    			<td>所在区</td>
-   			<td><input type="text" name="teacher_region"/></td>
+   			<td><input id="reg" type="text" name="teacher_region"/></td>
    		</tr>
    		<tr>
    			<td>所在街道</td>
-   			<td><input type="text" name="teacher_street"/></td>
+   			<td><input id="stre" type="text" name="teacher_street"/></td>
    		</tr>
    		<tr>
    			<td>身份证号码</td>
-   			<td><input type="text" name="teacher_card"/></td>
+   			<td><input id="car" type="text" name="teacher_card"/></td>
    		</tr>
    		<tr>
    			<td>上传身份证正面图</td>
-   			<td><input type="file" name="teacher_card_image"/></td>
+   			<td><input id="img" type="file" name="IDcard_image"/></td>
    		</tr>
    		
    		<tr>
    			<td>个人描述</td>
-   			<td><input type="text" name="teacher_descr"/></td>
+   			<td><input id="self" type="text" name="teacher_descr"/></td>
    		</tr>
    		<tr>
    			<td>是否接受预约</td>
@@ -85,9 +92,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
    		</tr>
    		
    	</table>
-   	<input type="submit" value="提交"/>
-   </form>
-   
+   	<input type="submit" value="提交"  onclick="return check()" />
+  </form>
+ 
+  
    	
   </body>
 </html>
