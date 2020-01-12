@@ -42,7 +42,7 @@
   </servlet-mapping>
   
   
-  
+  <absolute-ordering />
   
   <welcome-file-list>
     <welcome-file>index.html</welcome-file>

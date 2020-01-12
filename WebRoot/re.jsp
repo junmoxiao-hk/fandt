@@ -9,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'register.jsp' starting page</title>
+    <title>My JSP 're.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -19,9 +19,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	
-	 <script type="text/javascript" src="${pageContext.request.contextPath}/js/check.js"></script> 
-	<script type="text/javascript">
+<link href="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/css/bootstrap.min.css" rel="stylesheet">
+	<script src="http://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
+    <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
+    
+    	<script type="text/javascript">
 	  
 	  	var ishave="";
 	  
@@ -233,80 +236,132 @@ function check(){
 		
 	</script>
 	
+    
   </head>
   
-  <body>
-  <form  action="${pageContext.request.contextPath}/register_teacher.action" method="post"   enctype="multipart/form-data"   onsubmit="return check()">
-  	 <span id="span_msg" ></span>
-  		<table border="1" width="50%" align="center">
-   		<tr>
-   			<td>账号</td>
-   			<td><input id="usname" type="text" name="Teacher_user_name" /></td>
-   		</tr>
-   		<tr>
-   			<td>密码</td>
-   			<td><input id="pwd" type="password" name="teacher_user_password"  /></td>
-   		</tr>
-   		<tr>
-   			<td>真实姓名</td>
-   			<td><input id="name" type="text" name="Teacher_name" /></td>
-   		</tr>
-   		
-   		<tr>
-   			<td>性别</td>
-   			<td>
-   			<input  type="radio" name="teacher_sex" value="男" checked="checked" />男
-   			<input  type="radio" name="teacher_sex" value="女" />女
-   			</td>
+  <body style="background-image: url(${pageContext.request.contextPath}/image/bg.jpg);background-size:cover; ">
+   <div class="container-fluid">
+   		<div class="row" style="hieght:100%;">
+   				<div class="col-md-10 col-md-offset-1">
+   	<form  action="${pageContext.request.contextPath}/register_teacher.action" method="post"   enctype="multipart/form-data"   onsubmit="return check()">
+   	 <span id="span_msg" ></span>
+   	<table class="table table-striped"  width="50%" align="center">
+   	 <tr>
+  		<div class="form-group" >
+    		<td><label for="exampleInputEmail1">账号：</label></td>
+    		<td><input type="text" class="form-control" id="usname" placeholder="账号" name="Teacher_user_name"></td>
+    		<td> <label for="exampleInputPassword1">密码：</label></td>
+    		<td><input type="text" class="form-control" id="pwd" placeholder="Password" name="teacher_user_password"></td>
+  		</div>
+  	</tr>
+  	<!-- <tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">密码：</label></td>
+    		<td><input type="text" class="form-control" id="pwd" placeholder="Password" name="teacher_user_password"></td>
+  		</div>
+  	</tr>	 -->
+  	<tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">真实姓名：</label></td>
+    		<td><input type="text" class="form-control" id="name" name="Teacher_name"></td>
+    		
+    		<td> <label for="exampleInputPassword1">联系电话：</label></td>
+    		<td><input type="text" class="form-control" id="tel" name="teacher_telephone"></td>
+  		</div>
+  	</tr>	
+  	<tr>
+  			
+  		<div class="radio">
+  			<td> <label for="exampleInputPassword1">性别：</label></td>
+    		<td>
+    		<input type="radio" name="teacher_sex" id="teacher_sex" value="男" checked>男
+    		<input type="radio" name="teacher_sex" id="teacher_sex" value="女" >女
+    		</td>	
+    		
+    		<td> <label for="exampleInputPassword1">接受预约：</label></td>
+    		<td>
+    		<input type="radio" name="isorder"  value="0" checked>是
+    		<input type="radio" name="isorder"  value="1" >否
+    		</td> 
+		</div>
+  	</tr>	
+  	<!-- <tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">联系电话：</label></td>
+    		<td><input type="text" class="form-control" id="tel" name="teacher_telephone"></td>
+  		</div>
+  	</tr>	 -->
+  	
+  	<tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">所在市：</label></td>
+    		<td><input type="text" class="form-control" id="city" name="teacher_atcity"></td>
+    		<td> <label for="exampleInputPassword1">所在街道：</label></td>
+    		<td><input type="text" class="form-control" id="reg" name="teacher_region"></td>
+  		</div>
+  	</tr>	
+  	<!-- <tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">所在街道：</label></td>
+    		<td><input type="text" class="form-control" id="reg" name="teacher_region"></td>
+  		</div>
+  	</tr> -->
+  	<tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">所在街道：</label></td>
+    		<td><input type="text" class="form-control" id="stre" name="teacher_street"></td>
+    		
+    		<td> <label for="exampleInputPassword1">身份证号码：</label></td>
+    		<td><input type="text" class="form-control" id="car" name="teacher_card"></td>
+  		</div>
+  	</tr>	
+  	<!-- <tr>	
+  		<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">身份证号码：</label></td>
+    		<td><input type="text" class="form-control" id="car" name="teacher_card"></td>
+  		</div>
+  	</tr> -->	
+  	
+  	<tr>
+  		<div class="form-group" >
+    		<td><label for="exampleInputFile">File input</label></td>
+    		<td><input type="file" id="img"  name="IDcard_image"></td>
+    		
+    		<td> <label for="exampleInputPassword1">个人描述：</label></td>
+    		<td><textarea class="form-control"  id="self" rows="3" name="teacher_descr"></textarea></td>
+   			 
+ 		 </div>
+ 	</tr> 
+ 	<!-- <tr>
+ 	
+ 	<div class="form-group" >
+   			<td> <label for="exampleInputPassword1">个人描述：</label></td>
+    		<td><textarea class="form-control"  id="self" rows="3" name="teacher_descr"></textarea></td>
+  		</div>
+  		
+  	</tr>	 -->
+ 	<!-- <tr>	
+  		<div class="radio">
+  			<td> <label for="exampleInputPassword1">接受预约：</label></td>
+    		<td>
+    		<input type="radio" name="isorder"  value="0" checked>是
+    		<input type="radio" name="isorder"  value="1" >否
+    		</td>
+   				 
+  			<button type="submit" class="btn btn-default">注册</button>
+		</div>
+  	</tr> -->	
+ 	
+ 	 <tr>
+ 	
    			
-   		</tr>
-   		<tr>
-   			<td>联系电话</td>
-   			<td><input id="tel" type="text" name="teacher_telephone" /></td>
-   		</tr>
-   		<tr>
-   			<td>所在市</td>
-   			<td><input id="city" type="text" name="teacher_atcity" value="东莞市" readonly="readonly" /></td>
-   		</tr>
-   		<tr>
-   			<td>所在区</td>
-   			<td><input id="reg" type="text" name="teacher_region"/></td>
-   		</tr>
-   		<tr>
-   			<td>所在街道</td>
-   			<td><input id="stre" type="text" name="teacher_street"/></td>
-   		</tr>
-   		<tr>
-   			<td>身份证号码</td>
-   			<td><input id="car" type="text" name="teacher_card"/></td>
-   		</tr>
-   		<tr>
-   			<td>上传身份证正面图</td>
-   			<td><input id="img" type="file" name="IDcard_image"  /></td>
-   		</tr>
-   		
-   		<tr>
-   			<td>个人描述</td>
-   			<td><input id="self" type="text" name="teacher_descr"/></td>
-   		</tr>
-   		<tr>
-   			<td>是否接受预约</td>
-   			<td>
-   			<input type="radio" name="isorder" value="0" checked="checked" />是
-   			<input type="radio" name="isorder" value="1" />否
-   			</td>
-   			
-   		</tr>
-   		
-   	</table>
-   	<input type="submit" value="提交"          onclick="return check()" />
-  </form>
- 
-  <%-- <form action="${pageContext.request.contextPath}/register_teacher.action" method="post"   enctype="multipart/form-data"   onsubmit="return check()">
-  	 
-  </form> --%>
- 
-  
-   	
+    </tr>	 
+  		
+  	</table>
+  	<button  type="submit" class="btn btn-default">注册</button>
+</form>
+   				</div>
+   		</div>
+   </div>
   </body>
 </html>

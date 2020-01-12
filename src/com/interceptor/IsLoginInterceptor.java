@@ -1,5 +1,4 @@
 package com.interceptor;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -25,6 +24,7 @@ public class IsLoginInterceptor implements HandlerInterceptor {
 	@Override
 	public boolean preHandle(HttpServletRequest arg0, HttpServletResponse arg1, Object arg2) throws Exception {
 		String user=(String) arg0.getSession().getAttribute("user");
+		
 		
 		if(user!=null){
 			return true;

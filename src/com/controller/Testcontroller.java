@@ -5,6 +5,8 @@ import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
@@ -87,21 +89,46 @@ public class Testcontroller {
 		return "success";
 	}
 	
-	@RequestMapping("/names")
-	public void  names(@ModelAttribute("request")HttpServletRequest request){
+	@RequestMapping("/chect_img")
+	public void  chect_img(String fileName,HttpServletRequest request,HttpServletResponse response){
+		try {
+			
+			System.out.println(fileName);
+			PrintWriter out=response.getWriter();
+			
+			if(fileName==null||"".equals(fileName)){
+				out.write("no");
+			}else{
+				String filetype=fileName.substring(fileName.lastIndexOf("."));
+				if(!".jpg".equals(filetype)&&!".png".equals(filetype)){
+					out.write("no");
+				}
+			}
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
-		List<String> list=new ArrayList<String>();
-		list.add("sad");
-		list.add("sads");
-		list.add("sad");
-		list.add("sadas");
-		System.out.println("asd");
-		request.setAttribute("names", list);
-		request.setAttribute("name", "saasad");
 		
-		return ;
 	}
-	
+	@RequestMapping("/chect_username")
+	public void  chect_username(String username,HttpServletRequest request,HttpServletResponse response){
+		try {
+			
+			System.out.println(username);
+			PrintWriter out=response.getWriter();
+			
+			out.write("");
+			
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		
+	}
 	@RequestMapping("/aaa/regis")
 	public String regis(){
 		
