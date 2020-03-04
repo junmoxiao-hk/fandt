@@ -24,10 +24,33 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- 加载 Bootstrap 的所有 JavaScript 插件。你也可以根据需要只加载单个插件。 -->
     <script src="${pageContext.request.contextPath}/bootstrap-3.3.7-dist/js/bootstrap.min.js"></script>
     <script type="text/javascript">
+    
+    		function check(){
+    			var username=document.getElementById("username");
+    			var password=document.getElementById("password");
+    			if(username.value==null||username.value==""){
+    				span.innerHTML="<font color='red'>用户名不能为空</font>";
+    				return false;
+    			}else if(password.value==null||password.value==""){
+    				span.innerHTML="<font color='red'>密码不能为空</font>";
+    				return false;
+    			}else{
+    					span.innerHTML="";
+    					return true;
+    			}
+    			
+    			
+    		}
+    
+    
           function forward(){
                
-               location.href = "<%=request.getContextPath()%>/re.jsp";
-}
+               location.href = "<%=request.getContextPath()%>/register_teacherform.action";
+			}
+ 		function forwardtwo(){
+               
+               location.href = "<%=request.getContextPath()%>/register_studentform.action";
+			}
 </script>
   </head>
   
@@ -242,29 +265,31 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
  				</div>
  				<!-- 右边 -->
   				<div class="col-md-5" style="background-color:#ffffff;">
-  					<form class="form-horizontal" style="margin-top: 5rem;background-color:#ffffff " action="${pageContext.request.contextPath}/in.jsp">
+  						<form  action="${pageContext.request.contextPath}/login.action" method="post"   class="form-horizontal" style="margin-top: 5rem;background-color:#ffffff "   onsubmit="return check()">
+  					<%-- <form class="form-horizontal" style="margin-top: 5rem;background-color:#ffffff " action="${pageContext.request.contextPath}/login.action" onsubmit="return check()" > --%>
+  						<span id="msg"><font color="red">${sessionScope.msg }</font></span>
   						<div class="form-group">
    							 <label for="inputEmail3" class="col-sm-2 control-label">账号：</label>
     							<div class="col-sm-10">
-     								 <input type="text" class="form-control" id="inputEmail3" placeholder="账号">
+     								 <input type="text" class="form-control" id="username" name="username" value="${sessionScope.user }" placeholder="账号">
    								 </div>
  						 </div>
   						<div class="form-group">
    							 <label for="inputPassword3" class="col-sm-2 control-label">密码：</label>
    								 <div class="col-sm-10">
-     								 <input type="password" class="form-control" id="inputPassword3" placeholder="密码">
+     								 <input type="password" class="form-control" id="password" name="password" value="${sessionScope.password }" placeholder="密码">
    								 </div>
   						</div>
   						<div class="form-group">
     						<div class="col-sm-offset-2 col-sm-10">
       							<div class="radio">
       						 		<label>
-   									 <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>学员
+   									 <input type="radio" name="role" id="optionsRadios1" value="student" checked>学员
   										
  									 </label>
        								<label>
    									
-  										<input type="radio" name="optionsRadios" id="optionsRadios1" value="option2" >教员
+  										<input type="radio" name="role" id="optionsRadios1" value="teacher" >教员
  									 </label>
        								 <label>
           							
@@ -272,7 +297,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
        								 </label>
        								 <label>
           							
-          							<input type="button" class="btn btn-info" name="red" value="成为学员" onclick="forward()"> 
+          							<input type="button" class="btn btn-info" name="red" value="成为学员" onclick="forwardtwo()"> 
        								 </label>
      							 </div>
     						</div>

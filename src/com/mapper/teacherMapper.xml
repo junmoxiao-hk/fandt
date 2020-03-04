@@ -3,8 +3,14 @@
 		"-//mybatis.apache.org//DTD Mapper 3.0//EN"      
  		"http://ibatis.apache.org/dtd/mybatis-3-mapper.dtd">
  		<mapper namespace="com.Dao.TeacherDao">
- 			<select id="addteacher" parameterType="Teacher"  >
+ 			<insert id="addteacher" parameterType="Teacher"  >
  				insert into teacher value (null,#{teacher_user_name},#{teacher_user_password},#{teacher_name},#{teacher_sex},#{teacher_telephone},#{teacher_atcity},#{teacher_region},#{teacher_street},#{teacher_card},#{teacher_card_image},#{teacher_descr},#{isorder},#{check_status})
+ 			</insert>
+ 			<select id="ishave" parameterType="String" resultType="int" >
+ 				select count(*) from teacher where teacher_user_name=#{teacher_user_name}
+ 			</select>
+ 			<select id="loginselect" parameterType="String" resultType="Teacher" >
+ 				select teacher_user_name,teacher_user_password,check_status from teacher where teacher_user_name=#{teacher_user_name}
  			</select>
  		
  		</mapper>

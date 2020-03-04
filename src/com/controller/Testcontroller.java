@@ -9,6 +9,7 @@ import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 import javax.servlet.http.HttpServletRequest;
@@ -39,27 +40,39 @@ public class Testcontroller {
 	public String register_teacherform(){
 		
 		
-		return "register_teacher";
+		return "registToteacher";
 	}
 	@RequestMapping("/register_studentform")
 	public String register_studentform(){
 		
 		
-		return "register_student";
+		return "registTostudent";
 	}
+	/**
+	 * 注册成为教员
+	 * @param teacher 注册表单数据实体
+	 * @param IDcard_image 上传图片
+	 * @return
+	 */
 	@RequestMapping("/register_teacher")
-	public String register_teacher(Teacher teacher,MultipartFile IDcard_image){
-		System.out.println(teacher.toString());
+	public String register_teacher(HttpServletRequest request,Teacher teacher,MultipartFile IDcard_image){
+		
+		Map<String, String> map = null;
 		try {
-			
+			//获取文件名
 			String imgnameString=IDcard_image.getOriginalFilename();
 			System.out.println(imgnameString.substring(imgnameString.lastIndexOf(".")));
 			String filename="D:\\datebyuser\\image\\"+UUID.randomUUID()+imgnameString.substring(imgnameString.lastIndexOf("."));
 			File file=new File(filename);
-
 			
-				IDcard_image.transferTo(file);
-				teacher.setTeacher_card_image(filename);
+			IDcard_image.transferTo(file);
+			
+			teacher.setTeacher_card_image(filename);
+			
+			//添加新教员
+			map= teacherservice.addteacher(teacher);
+			
+			
 			} catch (IllegalStateException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -67,33 +80,76 @@ public class Testcontroller {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			if(map.get("stats").equals("1")){
+				request.setAttribute("msgbyre", map.get("msg"));
+				return "success";
+			}else{
+				request.setAttribute("msgbyre", map.get("msg"));
+				return "registToteacher";
+			}
 			
-			System.out.println(teacher.toString());
-
-		teacherservice.addteacher(teacher);
-		return "success";
+		
 	}
-	
+	/**
+	 * 
+	 * @param student
+	 * @return
+	 */
 	@RequestMapping("/register_student")
-	public String register_student(Student student){
-		System.out.println(student.toString());
-		studentservice.addstudent(student);
-		return "success";
+	public String register_student(Student student,HttpServletRequest request,MultipartFile IDcard_image){
+		Map<String, String> map = null;
+		try {
+			//获取文件名
+			String imgnameString=IDcard_image.getOriginalFilename();
+			System.out.println(imgnameString.substring(imgnameString.lastIndexOf(".")));
+			String filename="D:\\datebyuser\\image\\"+UUID.randomUUID()+imgnameString.substring(imgnameString.lastIndexOf("."));
+			File file=new File(filename);
+			
+			IDcard_image.transferTo(file);
+			
+			student.setStudent_card_image(filename);
+			
+			//添加新学员
+			map= studentservice.addstudent(student);
+			
+			
+			} catch (IllegalStateException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			if(map.get("stats").equals("1")){
+				request.setAttribute("msgbyre", map.get("msg"));
+				return "success";
+			}else{
+				request.setAttribute("msgbyre", map.get("msg"));
+				return "registTostudent";
+			}
 	}
 	
+	/**
+	 * 
+	 * @param request
+	 * @param session
+	 * @param username
+	 * @param shenfen
+	 * @param password
+	 * @return
+	 */
 	
-	@RequestMapping("/login")
-	public String  msg(HttpServletRequest request,HttpSession session,String username,String shenfen,String password){
-		System.out.println(username+shenfen+password);
-		session.setAttribute("user", username);
-		return "success";
-	}
-	
+	/**
+	 * 校验上传文件格式是否正确
+	 * @param fileName
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping("/chect_img")
 	public void  chect_img(String fileName,HttpServletRequest request,HttpServletResponse response){
 		try {
 			
-			System.out.println(fileName);
+			
 			PrintWriter out=response.getWriter();
 			
 			if(fileName==null||"".equals(fileName)){
@@ -112,14 +168,30 @@ public class Testcontroller {
 		
 		
 	}
+	/**
+	 * 校验用户名是否已经存在
+	 * @param username
+	 * @param request
+	 * @param response
+	 */
 	@RequestMapping("/chect_username")
 	public void  chect_username(String username,HttpServletRequest request,HttpServletResponse response){
 		try {
 			
 			System.out.println(username);
+			String ishave;
+			String ishave_teacher=teacherservice.ishave(username);
+			String ishave_student=studentservice.ishave(username);
+			if(ishave_teacher==null&&ishave_student==null){
+				ishave="";
+			}else{
+				ishave="have";
+			}
 			PrintWriter out=response.getWriter();
-			
-			out.write("");
+			System.out.println(ishave_teacher);
+			System.out.println(ishave_student);
+			System.out.println(ishave);
+			out.write(ishave);
 			
 			
 		} catch (IOException e) {

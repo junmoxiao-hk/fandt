@@ -1,21 +1,23 @@
 package com.pojo;
 
-public class Teacher {
+import java.io.Serializable;
+
+public class Teacher implements Serializable {
 	
-	int teacher_id;
-	String teacher_user_name;
-	String teacher_user_password;
-	String teacher_name;
-	String teacher_sex ;
-	String teacher_telephone ;
-	String teacher_atcity ;
-	String teacher_street ;
-	String teacher_region ;
-	String teacher_card ;
-	String teacher_card_image ;
-	String teacher_descr ;
-	int isorder;
-	int check_status;
+	int teacher_id;  				//主键
+	String teacher_user_name;       //用户名
+	String teacher_user_password;   //密码
+	String teacher_name;			//真实姓名
+	String teacher_sex ;			//性别
+	String teacher_telephone ;		//电话号码
+	String teacher_atcity ;			//所在城市
+	String teacher_street ;			//所在街区
+	String teacher_region ;			//所在街道
+	String teacher_card ;			//身份证号码
+	String teacher_card_image ;		//身份证照片
+	String teacher_descr ;			//自我描述
+	int isorder;					//是否接受预约
+	int check_status;				//账号可用状态
 	public int getTeacher_id() {
 		return teacher_id;
 	}

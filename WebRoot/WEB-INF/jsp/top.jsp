@@ -1,5 +1,4 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jstl/core" prefix="c" %>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
@@ -10,7 +9,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <head>
     <base href="<%=basePath%>">
     
-    <title>My JSP 'success.jsp' starting page</title>
+    <title>My JSP 'top.jsp' starting page</title>
     
 	<meta http-equiv="pragma" content="no-cache">
 	<meta http-equiv="cache-control" content="no-cache">
@@ -20,31 +19,20 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<!--
 	<link rel="stylesheet" type="text/css" href="styles.css">
 	-->
-	<script type="text/javascript">
-	window.onload=function(){
-		var but=document.getElementById("but");
-		but.onclick=function(){
-			var request=new XMLHttpRequest();
-			request.open("get", "${pageContext.request.contextPath}/names.action");
-			request.send(null);
-			request.onreadystatechange=function(){
-					if(request.readyState==4){
-					if(request.status==200||request.status==304){
-						alert(request.statusText);
-					}
-				}
-			}
-			
-		}
-	}
-	</script>
 
   </head>
   
-  <body >
- <h2> <font color="green">${requestScope.msgbyre}</font></h2>
- <a href="http://localhost:8080/fandt">返回首页</a>
-  
- 	
+  <body>
+    <div class="row" style="hieght:30%;">
+    		 <nav class="navbar" ><!-- navbar-inverse -->
+            				<div class="navbar-collapse" style="background-color: #dff0d8;">
+               					 <ul class="nav navbar-nav">
+                 					   <p>欢迎您！${sessionScope.user}</p>
+                 					   <a href="${pageContext.request.contextPath}/loginout.action">退出登录</a>
+                  					  
+               					 </ul>
+             			    </div>
+       					 </nav>
+    	</div>
   </body>
 </html>

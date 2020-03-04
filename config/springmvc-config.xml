@@ -30,11 +30,11 @@
     	</property>
     </bean>
    	
-   	<mvc:interceptors>
+   <!-- 	<mvc:interceptors>
    		<mvc:interceptor>
    			<mvc:mapping path="/aaa/**"/>
    			<bean class="com.interceptor.IsLoginInterceptor"></bean>
    		</mvc:interceptor>
-   	</mvc:interceptors>
+   	</mvc:interceptors> -->
     
     </beans>
